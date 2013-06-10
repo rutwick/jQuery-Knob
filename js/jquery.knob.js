@@ -456,8 +456,8 @@
                 mw = function (e) {
                             e.preventDefault();
                             var ori = e.originalEvent
-                                ,deltaX = ori.detail || ori.wheelDeltaX
-                                ,deltaY = ori.detail || ori.wheelDeltaY
+                                ,deltaX = ori.detail || (ori.wheelDeltaX || ori.wheelDelta)
+                                ,deltaY = ori.detail || (ori.wheelDeltaY || ori.wheelDelta)
                                 ,v = parseInt(s.$.val()) + (deltaX>0 || deltaY>0 ? s.o.step : deltaX<0 || deltaY<0 ? -s.o.step : 0);
 
                             if (
@@ -530,8 +530,10 @@
                     }
                 );
 
-            this.$c.bind("mousewheel DOMMouseScroll", mw);
-            this.$.bind("mousewheel DOMMouseScroll", mw)
+            //this.$c.bind("mousewheel DOMMouseScroll", mw);
+            //this.$.bind("mousewheel DOMMouseScroll", mw)
+			this.$c.on("mousewheel DOMMouseScroll", mw);
+			this.$.on("mousewheel DOMMouseScroll", mw);
         };
 
         this.init = function () {
