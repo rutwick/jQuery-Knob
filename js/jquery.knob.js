@@ -455,6 +455,7 @@
             var s = this,
                 mw = function (e) {
                             e.preventDefault();
+							//IE10 - wheelDelta as a fallback
                             var ori = e.originalEvent
                                 ,deltaX = ori.detail || (ori.wheelDeltaX || ori.wheelDelta)
                                 ,deltaY = ori.detail || (ori.wheelDeltaY || ori.wheelDelta)
@@ -530,6 +531,7 @@
                     }
                 );
 
+			//Replaced 'bind' with 'on' as the former is deprecated now
             //this.$c.bind("mousewheel DOMMouseScroll", mw);
             //this.$.bind("mousewheel DOMMouseScroll", mw)
 			this.$c.on("mousewheel DOMMouseScroll", mw);
